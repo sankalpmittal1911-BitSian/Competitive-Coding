@@ -21,9 +21,9 @@ Output:
 Maximum profit value
 */
 
-# You can use backtracking or bruteforce:
+//You can use backtracking or bruteforce:
 
-# Here is a DP solution
+//Here is a DP solution
 
 #include<iostream>
 #include<fstream>
