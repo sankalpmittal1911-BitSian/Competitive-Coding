@@ -82,3 +82,37 @@ int main()
 
 
 //Can you write DP solution?
+
+//Hint:
+
+int main()
+{
+    int n,X;
+
+    cin>>n>>X;
+
+    int dp[n+1][X+1];
+
+    for(int i=0;i<=n;++i)
+        for(int j=0;j<=X;++j)
+        dp[i][j]=0;
+
+    for(int i=1;i<=6 && i<=X;++i)
+        dp[1][i] = 1;
+
+    for(int i=2;i<=n;++i)
+    {
+        for(int j=1;j<=X;++j)
+        {
+            for(int k = 1; k<=6 && k<=X;++k)
+            {
+                dp[i][j]+=dp[i-1][j-k];
+            }
+        }
+    }
+
+    cout<<dp[n][X]<<endl;
+
+    return 0;
+}
+
