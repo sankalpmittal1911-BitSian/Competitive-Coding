@@ -30,6 +30,11 @@ Maximum profit value
 #include<bits/stdc++.h>
 
 
+#include<iostream>
+#include<fstream>
+#include<bits/stdc++.h>
+
+
 using namespace std;
 
 int main()
@@ -45,22 +50,26 @@ int main()
     num_models+=2;
 
     int n_cpu,n_mem,n_b;
+    int pr_cpu,pr_mem;
 
    myfile>>n_cpu;
    myfile>>n_mem;
    myfile>>n_b;
+   myfile>>pr_cpu;
+   myfile>>pr_mem;
+
 
     int cpu[num_models],mem[num_models],b[num_models],p[num_models];
 
     cpu[0]=1;
     mem[0]=0;
     b[0]=0;
-    p[0]=1;
+    p[0]=pr_cpu;
 
     cpu[1]=0;
     mem[1]=1;
     b[1]=0;
-    p[1]=1;
+    p[1]=pr_mem;
 
 //cout<<num_models;
 
@@ -94,10 +103,15 @@ int main()
 
 
 
+    int ans=-1;
 
-    cout<<dp[n_cpu][n_mem][n_b]<<endl;
+    for(int i=0;i<=n_b;++i)
+        ans=max(ans,dp[n_cpu][n_mem][i]);
+
+    cout<<ans<<endl;
      myfile.close();
     return 0;
 
 
 }
+
