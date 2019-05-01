@@ -52,8 +52,10 @@ struct
     int soldiers;
 }booth[20];
 
-void min_toll(int num, int cost, int soldiers, int battles)
+void min_toll(int num, int cost, int soldiers0, int soldiers1, int soldiers2)
 {
+    int soldiers = soldiers0+soldiers1+soldiers2;
+
     if(cost>min_cost)
         return;
 
@@ -66,27 +68,35 @@ void min_toll(int num, int cost, int soldiers, int battles)
         }
     }
 
-    if(battles>=3)
-    {
-        soldiers = 0;
-        battles=0;
-
-    }
 
     //Battle
 
-    if(soldiers>0 && soldiers>=booth[num].soldiers && booth[num].soldiers>0 && battles<3)
+    if(soldiers>0 && soldiers>=booth[num].soldiers && booth[num].soldiers>0)
     {
         int backup = booth[num].soldiers;
         booth[num].soldiers = 0;
-        min_toll(num+1,cost,soldiers-backup,battles+1);
+
+        if(backup>soldiers1+soldiers2)
+        {
+
+            soldiers0 = soldiers - backup;
+            soldiers1=0;
+            soldiers2=0;
+        }
+        else if(backup>soldiers2)
+        {
+            soldiers1 = soldiers1+soldiers2 - backup;
+            soldiers2=0;
+        }
+
+        min_toll(num+1,cost,0,soldiers0,soldiers1);
         booth[num].soldiers = backup;
 
     }
 
     //Pay
 
-    min_toll(num+1,cost+booth[num].toll,soldiers,battles);
+    min_toll(num+1,cost+booth[num].toll,soldiers0,soldiers1,soldiers2);
 
     //Hire
 
@@ -94,7 +104,7 @@ void min_toll(int num, int cost, int soldiers, int battles)
     {
         int backup = booth[num].soldiers;
         booth[num].soldiers = 0;
-        min_toll(num+1, cost+ 2*booth[num].toll ,soldiers+backup,battles);
+        min_toll(num+1, cost+ 2*booth[num].toll ,soldiers0+backup,soldiers1, soldiers2);
         booth[num].soldiers = backup;
     }
 }
@@ -122,7 +132,7 @@ int main()
     for(int i = 0; i<N; ++i)
         myfile>>booth[i].soldiers>>booth[i].toll;
 
-    min_toll(0,0,0,0);
+    min_toll(0,0,0,0,0);
 
     cout<<min_cost<<endl;
     }
@@ -131,3 +141,4 @@ int main()
 
     return 0;
 }
+
