@@ -52,6 +52,10 @@ struct
     int soldiers;
 }booth[20];
 
+//Soldiers0 --> Fought 0 battles
+//Soldiers1 --> Fought 1 battles
+//Soldiers2 --> Fought 2 battles
+
 void min_toll(int num, int cost, int soldiers0, int soldiers1, int soldiers2)
 {
     int soldiers = soldiers0+soldiers1+soldiers2;
