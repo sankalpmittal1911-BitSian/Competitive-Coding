@@ -80,6 +80,9 @@ int pu[5];
                        t = i*time[0]+j*time[1]+k*time[2]+l*time[3]+m*time[4];
 
                        //cout<<e<<" "<<d<<endl;
+                       
+                       if(t>m_time)
+                           break;
 
                        if(d==t_d && e<=t_e)
                        {
