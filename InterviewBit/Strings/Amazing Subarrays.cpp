@@ -38,7 +38,7 @@ Explanation
     
         for(int i=0;i<n;++i)
         {
-            switch(A[0])
+            switch(A[i])
             {
                 case 'a':
                 c=c+(n-i)%10003;;
