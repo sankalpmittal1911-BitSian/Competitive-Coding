@@ -259,13 +259,10 @@ void dfs_zero(int i, int j)
 
     visit[i][j]=true;
 
-        if(isSafe(i-1,j))
+       
         dfs_count(i-1,j, mat[i-1][j]);
-        if(isSafe(i+1,j))
         dfs_count(i+1,j, mat[i+1][j]);
-        if(isSafe(i,j-1))
         dfs_count(i,j-1, mat[i][j-1]);
-        if(isSafe(i,j+1))
         dfs_count(i,j+1, mat[i][j+1]);
 
         dfs_zero(i-1,j);
