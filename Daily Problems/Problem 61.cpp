@@ -12,3 +12,5 @@ long long pow(long long x, long long y) {
     }
     return res;
 }
+
+// O(logn)
